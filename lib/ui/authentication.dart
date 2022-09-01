@@ -56,6 +56,7 @@ class _AuthenticationState extends State<Authentication> {
                       bool shouldNavigate =
                           await login(_emailField.text, _passwordField.text);
                       if (shouldNavigate) {
+                        print("Login Successful");
                         Navigator.push(
                           context,
                           MaterialPageRoute(

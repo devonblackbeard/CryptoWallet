@@ -18,6 +18,7 @@ class _AddViewState extends State<AddView> {
     return Material(
       child: Column(
         children: [
+          SizedBox(height: 40),
           DropdownButton(
             value: dropdownValue,
             onChanged: (String? value) {
@@ -43,11 +44,12 @@ class _AddViewState extends State<AddView> {
             ),
           ),
           Container(
+            margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
             width: MediaQuery.of(context).size.width / 1.4,
             height: 40.0,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
-              color: Colors.white,
+              color: Colors.pink,
             ),
             child: MaterialButton(
               onPressed: () async {

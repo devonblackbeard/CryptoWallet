@@ -56,7 +56,6 @@ class _HomeViewState extends State<HomeView> {
   }
 
   AddCoin() {
-    print('hello');
     Navigator.push(
         context, MaterialPageRoute(builder: ((context) => const AddView())));
   }
