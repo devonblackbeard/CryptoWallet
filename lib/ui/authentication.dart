@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cryptowallet/net/flutterfire.dart';
 import 'package:cryptowallet/ui/home_view.dart';
 import 'package:flutter/material.dart';
@@ -20,11 +22,12 @@ class _AuthenticationState extends State<Authentication> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(color: Colors.teal),
-        child: Container(
-          margin: const EdgeInsets.fromLTRB(40.0, 110.0, 40.0, 40.0),
-          child: Column(
-            children: [
-              TextFormField(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width/1.3,
+              child: TextFormField(
                 controller: _emailField,
                 decoration: const InputDecoration(
                   hintText: "Enter email",
@@ -32,7 +35,12 @@ class _AuthenticationState extends State<Authentication> {
                   labelStyle: TextStyle(color: Colors.white),
                 ),
               ),
-              TextFormField(
+            ),
+            
+            SizedBox(
+              width: MediaQuery.of(context).size.width/1.3,
+              height: MediaQuery.of(context).size.height/6,
+              child: TextFormField(
                 controller: _passwordField,
                 obscureText: true,
                 decoration: const InputDecoration(
@@ -41,35 +49,10 @@ class _AuthenticationState extends State<Authentication> {
                   labelStyle: TextStyle(color: Colors.white),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
-                child: Container(
-                  width: MediaQuery.of(context).size.width / 1.4,
-                  height: 40.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.white,
-                  ),
-                  child: MaterialButton(
-                    child: const Text("Login"),
-                    onPressed: () async {
-                      bool shouldNavigate =
-                          await login(_emailField.text, _passwordField.text);
-                      if (shouldNavigate) {
-                        print("Login Successful");
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const HomeView(),
-                          ),
-                        );
-                        // Navigate
-                      }
-                    },
-                  ),
-                ),
-              ),
-              Container(
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width/1.3,
+              child: Container(
                 width: MediaQuery.of(context).size.width / 1.4,
                 height: 40.0,
                 decoration: BoxDecoration(
@@ -77,24 +60,51 @@ class _AuthenticationState extends State<Authentication> {
                   color: Colors.white,
                 ),
                 child: MaterialButton(
+                  child: const Text("Login"),
                   onPressed: () async {
                     bool shouldNavigate =
-                        await register(_emailField.text, _passwordField.text);
+                        await login(_emailField.text, _passwordField.text);
                     if (shouldNavigate) {
-                      // Navigate
+                      print("Login Successful");
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const HomeView(),
                         ),
                       );
+                      // Navigate
                     }
                   },
-                  child: const Text("Register"),
                 ),
-              )
-            ],
-          ),
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 50),
+
+            Container(
+              width: MediaQuery.of(context).size.width / 1.3,              
+              height: 40.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                color: Colors.white,
+              ),
+              child: MaterialButton(
+                onPressed: () async {
+                  bool shouldNavigate =
+                      await register(_emailField.text, _passwordField.text);
+                  if (shouldNavigate) {
+                    // Navigate
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeView(),
+                      ),
+                    );
+                  }
+                },
+                child: const Text("Register"),
+              ),
+            )
+          ],
         ),
       ),
     );
