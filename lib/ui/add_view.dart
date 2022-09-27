@@ -19,7 +19,7 @@ class _AddViewState extends State<AddView> {
     return Material(
       child: Column(
         children: [
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
           DropdownButton(
             value: dropdownValue,
             onChanged: (String? value) {
@@ -41,11 +41,10 @@ class _AddViewState extends State<AddView> {
               decoration: const InputDecoration(
                 labelText: "Amount",
               ),
-              // keyboardType: TextInputType.text,
             ),
           ),
           Container(
-            margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+            margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
             width: MediaQuery.of(context).size.width / 1.4,
             height: 40.0,
             decoration: BoxDecoration(
